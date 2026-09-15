@@ -15,7 +15,12 @@ public class ContainerPriorityPatch : ModulePatch
     }
 
     [PatchPrefix]
-    protected static bool Prefix(GClass3372 __instance, InventoryEquipment equipment, Item item, ref IEnumerable<EFT.InventoryLogic.IContainer> __result)
+    protected static bool Prefix(
+        GClass3372 __instance,
+        InventoryEquipment equipment,
+        Item item,
+        ref IEnumerable<EFT.InventoryLogic.IContainer> __result
+    )
     {
         var slotVest = equipment.GetSlot(EquipmentSlot.TacticalVest);
         var slotBackpack = equipment.GetSlot(EquipmentSlot.Backpack);
@@ -36,11 +41,31 @@ public class ContainerPriorityPatch : ModulePatch
 
         __result = item switch
         {
-            AmmoItemClass _ => containers10.Concat(containers12).Concat(containers2).Concat(containers6).Concat(containers4).Concat(containers8),
-            MagazineItemClass _ => containers2.Concat(containers10).Concat(containers12).Concat(containers6).Concat(containers4).Concat(containers8),
-            MoneyItemClass _ => containers8.Concat(containers4).Concat(containers2).Concat(containers10).Concat(containers12).Concat(containers6),
-            ThrowWeapItemClass _ => containers6.Concat(containers10).Concat(containers12).Concat(containers2).Concat(containers4).Concat(containers8),
-            _ => containers4.Concat(containers2).Concat(containers10).Concat(containers12).Concat(containers6).Concat(containers8)
+            AmmoItemClass _ => containers10
+                .Concat(containers12)
+                .Concat(containers2)
+                .Concat(containers6)
+                .Concat(containers4)
+                .Concat(containers8),
+            MagazineItemClass _ => containers2
+                .Concat(containers10)
+                .Concat(containers12)
+                .Concat(containers6)
+                .Concat(containers4)
+                .Concat(containers8),
+            MoneyItemClass _ => containers8
+                .Concat(containers4)
+                .Concat(containers2)
+                .Concat(containers10)
+                .Concat(containers12)
+                .Concat(containers6),
+            ThrowWeapItemClass _ => containers6
+                .Concat(containers10)
+                .Concat(containers12)
+                .Concat(containers2)
+                .Concat(containers4)
+                .Concat(containers8),
+            _ => containers4.Concat(containers2).Concat(containers10).Concat(containers12).Concat(containers6).Concat(containers8),
         };
 
         return false;

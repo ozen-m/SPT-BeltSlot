@@ -18,22 +18,33 @@ public class SlotViewShowPatch : ModulePatch
     public static void Postfix(SlotView __instance)
     {
         var slot = __instance.Slot;
-        if (slot is null) return;
-        if (!slot.ID.StartsWith("ArmBand", StringComparison.Ordinal)) return;
+        if (slot is null)
+        {
+            return;
+        }
+        if (!slot.ID.StartsWith("ArmBand", StringComparison.Ordinal))
+        {
+            return;
+        }
 
         // Conflicts with SearchableSlotView, need to check for childCount
         var transform = __instance.transform;
-        if (transform.childCount < 8) return;
-
-        var unsubAction = slot.ReactiveContainedItem.Bind((item) =>
+        if (transform.childCount < 8)
         {
-            var textMesh = transform.GetChild(3).GetChild(2).GetComponent<TextMeshProUGUI>();
-            textMesh.text = item switch
+            return;
+        }
+
+        var unsubAction = slot.ReactiveContainedItem.Bind(
+            (item) =>
             {
-                CustomBeltItemClass => "BELT",
-                _ => BeltSlot.ArmbandText
-            };
-        });
+                var textMesh = transform.GetChild(3).GetChild(2).GetComponent<TextMeshProUGUI>();
+                textMesh.text = item switch
+                {
+                    CustomBeltItemClass => "BELT",
+                    _ => BeltSlot.ArmbandText,
+                };
+            }
+        );
 
         __instance.AddDisposable(unsubAction);
     }

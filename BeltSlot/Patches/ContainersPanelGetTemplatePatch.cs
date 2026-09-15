@@ -15,13 +15,15 @@ public class ContainersPanelGetTemplatePatch : ModulePatch
     }
 
     [PatchPrefix]
-    public static bool Prefix(ContainersPanel __instance, EquipmentSlot slotName, SlotView ____dogtagTemplate, SlotView ____defaultSlotTemplate, ref SlotView __result)
+    public static bool Prefix(
+        ContainersPanel __instance,
+        EquipmentSlot slotName,
+        SlotView ____dogtagTemplate,
+        SlotView ____defaultSlotTemplate,
+        ref SlotView __result
+    )
     {
-        __result = Object.Instantiate(
-            slotName is EquipmentSlot.Dogtag
-                ? ____dogtagTemplate
-                : ____defaultSlotTemplate
-        );
+        __result = Object.Instantiate(slotName is EquipmentSlot.Dogtag ? ____dogtagTemplate : ____defaultSlotTemplate);
         return false;
     }
 }

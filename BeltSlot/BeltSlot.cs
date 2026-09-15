@@ -18,8 +18,8 @@ public class BeltSlot : BaseUnityPlugin
         patchManager.EnablePatches();
 
         typeof(ContainersPanel)
-            .GetField("equipmentSlot_0", BindingFlags.Static | BindingFlags.NonPublic)?
-            .SetValue(null, _equipmentSlotsWithArmband);
+            .GetField("equipmentSlot_0", BindingFlags.Static | BindingFlags.NonPublic)
+            ?.SetValue(null, _equipmentSlotsWithArmband);
     }
 
     private static readonly EquipmentSlot[] _equipmentSlotsWithArmband =
@@ -29,6 +29,6 @@ public class BeltSlot : BaseUnityPlugin
         EquipmentSlot.ArmBand,
         EquipmentSlot.Backpack,
         EquipmentSlot.SecuredContainer,
-        EquipmentSlot.Dogtag
+        EquipmentSlot.Dogtag,
     ];
 }
