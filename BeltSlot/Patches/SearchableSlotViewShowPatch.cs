@@ -10,8 +10,6 @@ namespace BeltSlot.Patches;
 
 public class SearchableSlotViewShowPatch : ModulePatch
 {
-    private static readonly string _armbandText = "ARMBAND".Localized().ToUpper();
-
     protected override MethodBase GetTargetMethod()
     {
         return typeof(SearchableSlotView).GetMethod(nameof(SearchableSlotView.Show));

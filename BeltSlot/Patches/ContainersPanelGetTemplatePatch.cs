@@ -11,19 +11,13 @@ public class ContainersPanelGetTemplatePatch : ModulePatch
 {
     protected override MethodBase GetTargetMethod()
     {
-        return typeof(ContainersPanel).GetMethod(nameof(ContainersPanel.method_0));
+        return typeof(ContainersPanel).GetMethod(nameof(ContainersPanel.InstantiateSlotView));
     }
 
     [PatchPrefix]
-    public static bool Prefix(
-        ContainersPanel __instance,
-        EquipmentSlot slotName,
-        SlotView ____dogtagTemplate,
-        SlotView ____defaultSlotTemplate,
-        ref SlotView __result
-    )
+    public static bool Prefix(ContainersPanel __instance, EquipmentSlot slotName, ref SlotView __result)
     {
-        __result = Object.Instantiate(slotName is EquipmentSlot.Dogtag ? ____dogtagTemplate : ____defaultSlotTemplate);
+        __result = Object.Instantiate(slotName is EquipmentSlot.Dogtag ? __instance._dogtagTemplate : __instance._defaultSlotTemplate);
         return false;
     }
 }

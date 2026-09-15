@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>preview</LangVersion>
     <RootNamespace>BeltSlot</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>ozen</Authors>
     <AssemblyName>$(Authors).$(RootNamespace)</AssemblyName>
     <RepositoryUrl>https://github.com/ozen-m/SPT-BeltSlot</RepositoryUrl>
@@ -60,7 +60,7 @@
       <Private>false</Private>
     </Reference>
     <Reference Include="WTT-PackNStrap">
-      <HintPath>..\references\WTT-PackNStrap.dll</HintPath>
+      <HintPath>..\References\WTT-PackNStrapClient.dll</HintPath>
     </Reference>
   </ItemGroup>
 
